@@ -16,13 +16,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>React App</title>
+
+    <script src="https://fb.me/react-15.1.0.js"></script>
+  <script src="https://fb.me/react-dom-15.1.0.js"></script>
+  <script src="https://unpkg.com/axios@0.14.0/dist/axios.min.js"></script>
+
+
+    <title>Groceries</title>
   </head>
   
   <body>
     
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Item</button>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -36,14 +42,23 @@
       </div>
       <div class="modal-body">
         <p>Some text in the modal.</p>
+        <form id="form" onSubmit={this.handleSubmit}>
+          <input type="text" name="item" id="item" placeholder="Item"/>
+          <input type="date" name="expiry-date"/>
+          <input type="submit" class="btn btn-default" data-dismiss="modal" onclick={this.handleSubmit}/>
+        </form>
         <div id="root"></div>
+
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+      <div class="modal-footer"></div>
+    
 
   </div>
 </div>
+</div>
+
+
+<div id="list"></div>
+
   </body>
 </html>
