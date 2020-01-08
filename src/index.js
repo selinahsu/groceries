@@ -1,70 +1,64 @@
+  
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-  
-/*ReactDOM.render(
-    <div>
-        <ToDo />
-    </div>,
-    document.getElementById("root")
-); */
+import "./App.css";
+import Inputs from './Inputs.js'
+import List from './List.js'
+import 'bootstrap'
+import { getElementError } from "@testing-library/react";
 
-var reptiles = ['alligator', 'snake', 'lizard'];
+class App extends React.Component {
+    state ={
+        items: [],
+        id: Date.now(),
+        item: "",
+        editItem: false
+    };
 
-class ItemForm extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {value: ''};
-  
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
-  
-    handleSubmit(event) {
-        this.props.onSubmit(event.target.value);
-      //this.setState(() => reptiles.push(event.target.value));
-    }
+    handleChange = e => {
+        this.setState({
+            item: e.target.value
+        });
+    };
 
-    render(){
+    // handle Submit prevents page from refreshing
+    handleSubmit = (e) => {
+        e.preventDefault(); 
+        
+        const newItem = {
+            id: this.state.id, 
+            title: this.state.item
+        };
+
+        const updatedItems = [...this.state.items, newItem];
+
+        this.setState({
+            items: updatedItems, 
+            item: "",
+            id: Date.now(),
+            editItem: false
+        });
+    };
+    
+    render () {
         return (
-            <h1>hi there</h1>
+            <div>
+                <div className = "container">
+                    <div className = "row">
+                        <div>
+                            <h1>Add Item</h1>
+                            <Inputs item={this.state.item} 
+                                handleChange={this.handleChange}
+                                handleSubmit={this.handleSubmit}/>
+                            <List items={this.state.items}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
 
-class ItemList extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {value: ''};
-  
-      //this.addItem = this.addItem.bind(this);
-    }
+export default App;
 
-    render(){
-        return (
-            <div>
-                <div>
-                    <ItemForm onSubmit={(newItem) => this.setState(() => reptiles.push(newItem))}/>
-                </div>
-                <div>
-                    {reptiles}
-                </div>
-            </div>
-        ); // this returns the array containing the list of items
-    }
-}
-
-/*
-ReactDOM.render(
-    <div>
-        <ItemForm />
-    </div>, 
-    document.getElementById("root")
-);
-*/
-
-ReactDOM.render(
-    <div>
-        <ItemList />
-    </div>,
-    document.getElementById("list")
-); 
+ReactDOM.render(<App />, document.getElementById("root"));

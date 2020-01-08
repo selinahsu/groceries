@@ -1,30 +1,13 @@
-import React, { Component } from "react";
- 
-class Items extends Component {
-    constructor(props) {
-        super(props);
-     
-        this.createTasks = this.createTasks.bind(this);
-      }
-     
-      delete(key) {
-        this.props.delete(key);
-      }
-  
-    createTasks(item) {
-    return <li onClick={() => this.delete(item.key)} key={item.key}>{item.text}</li>
-  }
- 
-  render() {
-    var todoEntries = this.props.entries;
-    var listItems = todoEntries.map(this.createTasks);
- 
-    return (
-      <ul className="theList">
-          {listItems}
-      </ul>
-    );
-  }
-};
- 
-export default Items;
+import React, { Component } from 'react'
+
+export default class Items extends Component {
+    render () {
+      const {title} = this.props;
+        return (
+            <div>
+              {/* <h1>this is items.js</h1> */}
+              <h1>{title}</h1>
+            </div>
+        );
+    }
+}
