@@ -22,8 +22,9 @@
   <script src="https://unpkg.com/axios@0.14.0/dist/axios.min.js"></script>
   <script src="index.js"></script>
 
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 
-    <title>Groceries</title>
+  <title>Groceries</title>
   </head>
   
   <body>
@@ -43,10 +44,21 @@
       <input type="date" name="expiry-date"/>
       <input type="submit">
     </form>
-  </div> -->
+  </div> 
 
-</div>
+</div-->
 <div id="root"></div>
+
+<img src="addbutton.png" id="hide" onclick="showInputs()" style="position:fixed; top: 400px; left: 250px;">
+<img src="editbutton.png" id="hide" style="position:fixed; top: 400px; left: 50px;">
+
+<!-- Function makes the input menu appear -->
+<script>
+  function showInputs() {
+    $("#form").css('display','block');
+    $("#hide").css('display','none');
+  }
+</script>
 
   </body>
 </html>

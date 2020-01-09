@@ -1,4 +1,3 @@
-  
 import React from "react";
 import ReactDOM from "react-dom";
 import "./App.css";
@@ -12,12 +11,19 @@ class App extends React.Component {
         items: [],
         id: Date.now(),
         item: "",
+        date: "",
         editItem: false
     };
 
-    handleChange = e => {
+    handleNameChange = e => { // e for event
         this.setState({
             item: e.target.value
+        });
+    };
+
+    handleDateChange = e => { // e for event
+        this.setState({
+            date: e.target.value
         });
     };
 
@@ -27,7 +33,8 @@ class App extends React.Component {
         
         const newItem = {
             id: this.state.id, 
-            title: this.state.item
+            title1: this.state.item,
+            title2: this.state.date
         };
 
         const updatedItems = [...this.state.items, newItem];
@@ -35,9 +42,18 @@ class App extends React.Component {
         this.setState({
             items: updatedItems, 
             item: "",
+            date: "",
             id: Date.now(),
             editItem: false
         });
+    };
+
+    handleDelete = (id) => {
+        const filteredItems = this.state.items.filter(item => 
+            item.id !== id)
+            this.setState({
+                items: filteredItems
+            });
     };
     
     render () {
@@ -46,11 +62,11 @@ class App extends React.Component {
                 <div className = "container">
                     <div className = "row">
                         <div>
-                            <h1>Add Item</h1>
                             <Inputs item={this.state.item} 
-                                handleChange={this.handleChange}
+                                handleNameChange={this.handleNameChange}
+                                handleDateChange={this.handleDateChange}
                                 handleSubmit={this.handleSubmit}/>
-                            <List items={this.state.items}/>
+                            <List items={this.state.items} handleDelete={this.handleDelete}/>
                         </div>
                     </div>
                 </div>
