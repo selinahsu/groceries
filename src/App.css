@@ -1,0 +1,28 @@
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    font-weight: 10;
+}
+
+  #float-right {
+    float: right; 
+}
+
+#form {
+    display: none;
+}

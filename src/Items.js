@@ -1,30 +1,20 @@
-import React, { Component } from "react";
- 
-class Items extends Component {
-    constructor(props) {
-        super(props);
-     
-        this.createTasks = this.createTasks.bind(this);
-      }
-     
-      delete(key) {
-        this.props.delete(key);
-      }
-  
-    createTasks(item) {
-    return <li onClick={() => this.delete(item.key)} key={item.key}>{item.text}</li>
-  }
- 
-  render() {
-    var todoEntries = this.props.entries;
-    var listItems = todoEntries.map(this.createTasks);
- 
-    return (
-      <ul className="theList">
-          {listItems}
-      </ul>
-    );
-  }
-};
- 
-export default Items;
+import React, { Component } from 'react'
+
+export default class Items extends Component {
+    render () {
+      // title1, title2, handleDelete are props that get modified in List.js in an instance of the "Items" component
+      const {title1, title2, handleDelete} = this.props; 
+        return (
+          <li className="list-group-item text-capitalize d-flex justify-content-between my-2">
+            <div className="todo-icon">
+            <span>{title1}</span>
+            <span> | </span>
+            <span>{title2}</span>
+            <div id="float-right">
+              <span class="glyphicon glyphicon-ok" onClick={handleDelete}></span> 
+            </div>
+            </div>
+          </li>
+        );
+    }
+}
